@@ -1,0 +1,11 @@
+vote-web-key: "???"
+
+vote-rewards:
+  - name: "x16 diamond"
+    command: "give {username} diamond 16"
+
+vote-party:
+  vote-goal: 100
+  rewards:
+    - name: "x32 emerald"
+      command: "give {username} emerald 32"

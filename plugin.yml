@@ -1,0 +1,5 @@
+name: EssentialVote
+version: 1.0.0
+main: Essential\Vote\Essential
+author: Ethan
+api: 5.0.0
