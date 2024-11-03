@@ -49,11 +49,10 @@ class VoteManager extends VoteParty
 
                 if ($voteSuccessEvent->isCancelled()) return;
 
-                if ($this->addVoteCount()) {
-                    $voteGoal = $this->getVoteCount();
-
+                if ($this->addVoteCount())
+                {
                     $this->setVoteCount();
-                    (new VotePartyReachedEvent($voteGoal))->call();
+                    (new VotePartyReachedEvent($this->getVoteGoal()))->call();
                 }
             },
             2 => fn(Player $player) => (new PlayerVoteFailEvent($player, PlayerVoteFailEvent::CAUSE_ALREADY_VOTED))->call()

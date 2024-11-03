@@ -62,7 +62,7 @@ abstract class VoteParty
     {
         $newVoteCount = $this->voteCount + $voteCount;
 
-        if ($newVoteCount >= $this->voteGoal) return true;
+        if ($newVoteCount > $this->voteGoal) return true;
 
         $this->voteCount += $voteCount;
         return false;

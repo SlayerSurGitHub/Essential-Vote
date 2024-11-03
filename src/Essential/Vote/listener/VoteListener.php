@@ -39,6 +39,7 @@ class VoteListener implements Listener
         }
 
         $player->sendMessage("§aVous venez de voter pour le serveur et vous gagnez " . implode(", ", $rewards) . " !");
+        Server::getInstance()->broadcastMessage("§2[§aVote§2] §a{$player->getName()} vient de voter pour le serveur avec la commande /vote !");
     }
 
     /**
@@ -73,7 +74,7 @@ class VoteListener implements Listener
     {
         $voteGoal = $event->getVoteGoal();
 
-        array_map(function (Player $player): void
+        array_map(function (Player $player) use ($voteGoal): void
         {
             foreach ($this->main->getConfig()->get("vote-party")["rewards"] ?? [] as $values)
             {
@@ -82,6 +83,8 @@ class VoteListener implements Listener
                     str_replace("{username}", $player->getName(), $values["command"])
                 );
             }
+
+            $player->sendTitle("§rVoteParty", "§7{$voteGoal} vote(s) atteint(s)");
         }, $this->main->getServer()->getOnlinePlayers());
 
         Server::getInstance()->broadcastMessage("§aLe serveur vient d'atteindre le VoteParty qui était de {$voteGoal} vote(s) !");
